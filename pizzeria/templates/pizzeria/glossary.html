@@ -1,0 +1,21 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Словарь терминов{% endblock %}
+
+{% block content %}
+<h2>Словарь терминов</h2>
+
+{% if terms %}
+    <ul style="list-style: none; padding: 0;">
+        {% for term in terms %}
+            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                <strong>{{ term.term }}</strong><br>
+                <span>{{ term.definition }}</span><br>
+                <small>Добавлено: {{ term.added_at|date:"d.m.Y" }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Термины пока не добавлены.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: pizzeria
+    runtime: python
+    plan: free
+    autoDeploy: false
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn pizzeria_project.wsgi:application --bind 0.0.0.0:8000
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pizzeria_db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+
+databases:
+  - name: pizzeria_db
+    plan: free

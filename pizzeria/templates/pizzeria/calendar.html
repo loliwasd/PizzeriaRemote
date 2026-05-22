@@ -1,0 +1,56 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Календарь и время{% endblock %}
+
+{% block content %}
+<h2>📅 Календарь и время</h2>
+
+<!-- Текущее время -->
+<div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+    <h3>🕐 Текущее время</h3>
+    <p style="font-size: 24px; font-weight: bold;">{{ current_datetime }}</p>
+    <p>Таймзона: {{ current_timezone }}</p>
+</div>
+
+<!-- Выбор таймзоны -->
+<div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+    <h3>🌍 Выбор таймзоны</h3>
+    <form method="post" action="{% url 'set_timezone' %}">
+        {% csrf_token %}
+        <select name="timezone" style="padding: 8px; margin-right: 10px;">
+            {% for tz in timezones %}
+                <option value="{{ tz }}" {% if tz == current_timezone %}selected{% endif %}>{{ tz }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Изменить таймзону</button>
+    </form>
+</div>
+
+<!-- Навигация по месяцам -->
+<div style="margin-bottom: 20px; text-align: center;">
+    {% if month == 1 %}
+        <a href="{% url 'calendar_month' year|add:-1 12 %}" style="margin: 0 10px;">◀ Предыдущий год</a>
+    {% else %}
+        <a href="{% url 'calendar_month' year month|add:-1 %}" style="margin: 0 10px;">◀ Предыдущий месяц</a>
+    {% endif %}
+    
+    <span style="font-size: 18px; font-weight: bold;">{{ year }} г.</span>
+    
+    {% if month == 12 %}
+        <a href="{% url 'calendar_month' year|add:1 1 %}" style="margin: 0 10px;">Следующий год ▶</a>
+    {% else %}
+        <a href="{% url 'calendar_month' year month|add:1 %}" style="margin: 0 10px;">Следующий месяц ▶</a>
+    {% endif %}
+</div>
+
+<!-- Календарь -->
+<div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+    {{ calendar_html|safe }}
+</div>
+
+<p style="margin-top: 20px; text-align: center;">
+    <a href="{% url 'calendar' %}" style="background: #d32f2f; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px;">
+        Текущий месяц
+    </a>
+</p>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Промокоды{% endblock %}
+
+{% block content %}
+<h2>Промокоды</h2>
+
+{% if active_codes %}
+    <h3>Активные промокоды</h3>
+    <ul>
+        {% for code in active_codes %}
+            <li><strong>{{ code.code }}</strong> — скидка {{ code.discount_percent }}% (до {{ code.valid_to|date:"d.m.Y" }})</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Активных промокодов нет.</p>
+{% endif %}
+
+{% if expired_codes %}
+    <h3>Архивные промокоды</h3>
+    <ul>
+        {% for code in expired_codes %}
+            <li><strong>{{ code.code }}</strong> — скидка {{ code.discount_percent }}% (истёк {{ code.valid_to|date:"d.m.Y" }})</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

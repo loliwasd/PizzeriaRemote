@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: pizzeria_db
+    environment:
+      POSTGRES_DB: pizzeria_db
+      POSTGRES_USER: pizzeria_user
+      POSTGRES_PASSWORD: pizzeria_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - pizzeria_network
+
+  web:
+    build: .
+    container_name: pizzeria_web
+    environment:
+      DATABASE_URL: postgresql://pizzeria_user:pizzeria_password@db:5432/pizzeria_db
+      DEBUG: "False"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - pizzeria_network
+
+networks:
+  pizzeria_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

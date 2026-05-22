@@ -1,0 +1,22 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<h2>Новости</h2>
+{% if news_list %}
+    {% for item in news_list %}
+        <div style="border-bottom: 1px solid #eee; margin-bottom: 20px; padding-bottom: 10px;">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.short_description }}</p>
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" style="max-width: 200px;">
+            {% endif %}
+            <br>
+            <small>{{ item.created_at|date:"d.m.Y" }}</small>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Новостей пока нет.</p>
+{% endif %}
+{% endblock %}

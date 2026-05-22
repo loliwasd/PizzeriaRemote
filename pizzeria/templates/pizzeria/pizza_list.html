@@ -1,0 +1,58 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Меню пицц{% endblock %}
+
+{% block content %}
+<h2>🍕 Наши пиццы</h2>
+
+<!-- Поиск и сортировка -->
+<form method="get" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Поиск по названию..." value="{{ search_query }}" style="padding: 8px; width: 250px;">
+    <select name="sort" style="padding: 8px;">
+        <option value="name" {% if sort_by == 'name' %}selected{% endif %}>По названию</option>
+        <option value="price_small" {% if sort_by == 'price_small' %}selected{% endif %}>По цене (малая)</option>
+        <option value="price_medium" {% if sort_by == 'price_medium' %}selected{% endif %}>По цене (средняя)</option>
+        <option value="price_large" {% if sort_by == 'price_large' %}selected{% endif %}>По цене (большая)</option>
+    </select>
+    <button type="submit">Применить</button>
+</form>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% for pizza in pizzas %}
+        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; width: 280px;">
+            {% if pizza.image %}
+                <img src="{{ pizza.image.url }}" alt="{{ pizza.name }}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px;">
+            {% else %}
+                <div style="width: 100%; height: 150px; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">🍕</div>
+            {% endif %}
+            <h3>{{ pizza.name }}</h3>
+            <p>{{ pizza.description|truncatewords:15 }}</p>
+            <p><strong>Ингредиенты:</strong> {{ pizza.ingredients|truncatewords:10 }}</p>
+            <p>
+                🍕 Малая: {{ pizza.price_small }} руб<br>
+                🍕 Средняя: {{ pizza.price_medium }} руб<br>
+                🍕 Большая: {{ pizza.price_large }} руб
+            </p>
+            {% if pizza.is_available %}
+                <span style="color: green;">✅ В наличии</span>
+            {% else %}
+                <span style="color: red;">❌ Нет в наличии</span>
+            {% endif %}
+
+            <!-- Форма добавления в корзину -->
+            <form method="post" action="{% url 'add_to_cart' pizza.id %}" style="margin-top: 10px;">
+                {% csrf_token %}
+                <select name="size" style="padding: 5px;">
+                    <option value="small">Малая ({{ pizza.price_small }} руб)</option>
+                    <option value="medium" selected>Средняя ({{ pizza.price_medium }} руб)</option>
+                    <option value="large">Большая ({{ pizza.price_large }} руб)</option>
+                </select>
+                <input type="number" name="quantity" value="1" min="1" style="width: 60px;">
+                <button type="submit">В корзину</button>
+            </form>
+        </div>
+    {% empty %}
+        <p>Пиццы не найдены.</p>
+    {% endfor %}
+</div>
+{% endblock %}

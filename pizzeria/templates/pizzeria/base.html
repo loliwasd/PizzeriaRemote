@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Пиццерия{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f5f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #d32f2f;
+            color: white;
+            padding: 1rem 2rem;
+        }
+        nav {
+            background: #b71c1c;
+            padding: 0.5rem 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .user-info {
+            float: right;
+            color: white;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        footer {
+            background: #2c2c2c;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🍕 Пиццерия</h1>
+            <div class="user-info">
+                {% if user.is_authenticated %}
+                    Привет, {{ user.username }}! 
+                    <a href="{% url 'logout' %}" style="color:white;">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}" style="color:white;">Войти</a> | 
+                    <a href="{% url 'register' %}" style="color:white;">Регистрация</a>
+                {% endif %}
+            </div>
+    </header>
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/about/">О компании</a>
+        <a href="/news/">Новости</a>
+        <a href="/pizzas/">Меню</a>
+        <a href="{% url 'cart' %}">🛒 Корзина</a>
+        <a href="/glossary/">Словарь</a>
+        <a href="/contacts/">Контакты</a>
+        <a href="/vacancies/">Вакансии</a>
+        <a href="/reviews/">Отзывы</a>
+        <a href="/promocodes/">Промокоды</a>
+        <a href="{% url 'stats' %}">Статистика</a>
+        <a href="{% url 'calendar' %}">Календарь</a>
+        <a href="/privacy/">Политика</a>
+        {% if user.is_staff %}
+            <a href="/admin/">Админка</a>
+        {% endif %}
+    </nav>
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Пиццерия. Все права защищены.</p>
+        <p>Текущее время: {{ current_time }}</p>
+    </footer>
+</body>
+</html>

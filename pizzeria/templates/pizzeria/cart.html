@@ -1,0 +1,42 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<h2>🛒 Корзина</h2>
+
+{% if cart_items %}
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr><th>Пицца</th><th>Размер</th><th>Цена</th><th>Кол-во</th><th>Сумма</th><th></th></tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td>{{ item.pizza.name }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.price }} руб</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.subtotal }} руб</td>
+                    <td><a href="{% url 'remove_from_cart' forloop.counter0 %}">❌</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr style="font-weight: bold;">
+                <td colspan="4">Итого:</td>
+                <td>{{ total }} руб</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <div style="margin-top: 20px;">
+        <a href="{% url 'pizza_list' %}" style="margin-right: 15px;">← Продолжить покупки</a>
+        <a href="{% url 'checkout' %}" style="background: #d32f2f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Оформить заказ</a>
+    </div>
+{% else %}
+    <p>Корзина пуста</p>
+    <a href="{% url 'pizza_list' %}">Перейти к пиццам</a>
+{% endif %}
+{% endblock %}

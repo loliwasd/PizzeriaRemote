@@ -1,0 +1,19 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Вакансии{% endblock %}
+
+{% block content %}
+<h2>Вакансии</h2>
+
+{% if vacancies %}
+    {% for vacancy in vacancies %}
+        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+            <h3>{{ vacancy.title }}</h3>
+            <p>{{ vacancy.description }}</p>
+            <p><strong>Зарплата:</strong> {{ vacancy.salary }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Вакансий пока нет.</p>
+{% endif %}
+{% endblock %}

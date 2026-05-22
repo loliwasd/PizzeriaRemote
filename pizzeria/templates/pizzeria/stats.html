@@ -1,0 +1,58 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Статистика{% endblock %}
+
+{% block content %}
+<h2>📊 Статистика пиццерии</h2>
+
+<!-- Общая статистика -->
+<div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px;">
+    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; flex: 1;">
+        <h3>Всего заказов</h3>
+        <p style="font-size: 32px; font-weight: bold;">{{ total_orders }}</p>
+    </div>
+    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; flex: 1;">
+        <h3>Общая выручка</h3>
+        <p style="font-size: 32px; font-weight: bold;">{{ total_revenue|floatformat:2 }} руб</p>
+    </div>
+    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; flex: 1;">
+        <h3>Средний чек</h3>
+        <p style="font-size: 32px; font-weight: bold;">{{ avg_order_value|floatformat:2 }} руб</p>
+    </div>
+</div>
+
+<!-- График популярности пицц -->
+<h3>🍕 Популярность пицц</h3>
+{% if chart %}
+    <div style="text-align: center; margin-bottom: 30px;">
+        <img src="{{ chart }}" alt="График популярности пицц" style="max-width: 100%;">
+    </div>
+{% else %}
+    <p>Нет данных для построения графика. Сделайте хотя бы один заказ.</p>
+{% endif %}
+
+<!-- Таблица популярности пицц -->
+<h3>📋 Детальная статистика по пиццам</h3>
+{% if pizza_stats %}
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background: #d32f2f; color: white;">
+                <th style="padding: 10px; text-align: left;">Пицца</th>
+                <th style="padding: 10px; text-align: center;">Количество заказов</th>
+                <th style="padding: 10px; text-align: center;">Выручка</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pizza in pizza_stats %}
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 10px;"><strong>{{ pizza.pizza__name }}</strong></td>
+                    <td style="padding: 10px; text-align: center;">{{ pizza.total_quantity }}</td>
+                    <td style="padding: 10px; text-align: center;">{{ pizza.total_revenue|floatformat:2 }} руб</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Нет данных. Добавьте заказы через админку или через корзину.</p>
+{% endif %}
+{% endblock %}

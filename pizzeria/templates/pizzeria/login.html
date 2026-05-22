@@ -1,0 +1,15 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<h2>Вход в систему</h2>
+
+<form method="post" style="max-width: 400px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+</form>
+
+<p style="margin-top: 15px;">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+{% endblock %}

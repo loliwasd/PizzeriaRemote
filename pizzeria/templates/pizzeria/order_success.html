@@ -1,0 +1,14 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Заказ оформлен{% endblock %}
+
+{% block content %}
+<h2>✅ Заказ #{{ order.id }} оформлен!</h2>
+
+<p>Спасибо за заказ! Мы свяжемся с вами для подтверждения.</p>
+<p>Дата доставки: {{ order.delivery_date|date:"d.m.Y" }}</p>
+<p>Статус: {{ order.get_status_display }}</p>
+<p>Итого: {{ order.total_price }} руб</p>
+
+<a href="{% url 'pizza_list' %}" style="background: #d32f2f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Вернуться в меню</a>
+{% endblock %}

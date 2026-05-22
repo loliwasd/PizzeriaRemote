@@ -1,0 +1,42 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<h2>Оформление заказа</h2>
+
+<h3>Ваш заказ:</h3>
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr><th>Пицца</th><th>Размер</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td>{{ item.pizza.name }}</td>
+                <td>{{ item.size }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }} руб</td>
+                <td>{{ item.subtotal }} руб</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr style="font-weight: bold;"><td colspan="4">Итого:</td><td>{{ total }} руб</td></tr>
+    </tfoot>
+</table>
+
+<h3>Данные доставки</h3>
+<form method="post">
+    {% csrf_token %}
+    <div style="margin-bottom: 15px;">
+        <label>Дата доставки:</label><br>
+        <input type="date" name="delivery_date" required>
+    </div>
+    <div style="margin-bottom: 15px;">
+        <label>Промокод:</label><br>
+        <input type="text" name="promo_code" placeholder="Есть промокод?">
+    </div>
+    <button type="submit" style="background: #d32f2f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Подтвердить заказ</button>
+</form>
+{% endblock %}
