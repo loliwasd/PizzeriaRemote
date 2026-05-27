@@ -52,3 +52,15 @@ class ContactAdmin(admin.ModelAdmin):
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
     list_display = ('title', 'salary')
+
+from .models import Profile
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'birth_date', 'age', 'phone')
+    list_filter = ('birth_date',)
+    readonly_fields = ('age',)
+    
+    def age(self, obj):
+        return obj.age
+    age.short_description = "Возраст"

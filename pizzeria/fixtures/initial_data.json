@@ -1,0 +1,801 @@
+[
+{
+  "model": "pizzeria.pizza",
+  "pk": 1,
+  "fields": {
+    "name": "Пепперони",
+    "description": "Пицца с колбасками",
+    "price_small": "10.00",
+    "price_medium": "20.00",
+    "price_large": "30.00",
+    "image": "pizzas/pepperoni.jpg",
+    "ingredients": "Тесто, сыр, колбаски",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 2,
+  "fields": {
+    "name": "Маргарита",
+    "description": "Классическая итальянская пицца с томатным соусом, моцареллой и базиликом",
+    "price_small": "8.00",
+    "price_medium": "10.00",
+    "price_large": "12.00",
+    "image": "",
+    "ingredients": "томатный соус, моцарелла, базилик, оливковое масло",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 3,
+  "fields": {
+    "name": "Пепперони",
+    "description": "Острая пицца с пикантной пепперони и сыром",
+    "price_small": "9.00",
+    "price_medium": "11.00",
+    "price_large": "13.00",
+    "image": "",
+    "ingredients": "томатный соус, моцарелла, пепперони, орегано",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 4,
+  "fields": {
+    "name": "Гавайская",
+    "description": "Нежная пицца с курицей и ананасами",
+    "price_small": "10.00",
+    "price_medium": "12.00",
+    "price_large": "14.00",
+    "image": "",
+    "ingredients": "томатный соус, моцарелла, курица, ананасы, сыр пармезан",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 5,
+  "fields": {
+    "name": "Четыре сыра",
+    "description": "Для настоящих любителей сыра",
+    "price_small": "11.00",
+    "price_medium": "13.00",
+    "price_large": "15.00",
+    "image": "",
+    "ingredients": "сливочный соус, моцарелла, дор блю, пармезан, чеддер",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 6,
+  "fields": {
+    "name": "Мясная",
+    "description": "Сытная пицца с тремя видами мяса",
+    "price_small": "12.00",
+    "price_medium": "14.00",
+    "price_large": "16.00",
+    "image": "",
+    "ingredients": "томатный соус, моцарелла, бекон, ветчина, пепперони, охотничьи колбаски",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 7,
+  "fields": {
+    "name": "Вегетарианская",
+    "description": "Лёгкая пицца с овощами",
+    "price_small": "9.00",
+    "price_medium": "11.00",
+    "price_large": "13.00",
+    "image": "",
+    "ingredients": "томатный соус, моцарелла, перец, помидоры, грибы, оливки, лук",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 8,
+  "fields": {
+    "name": "Морская",
+    "description": "Деликатесная пицца с морепродуктами",
+    "price_small": "15.00",
+    "price_medium": "17.00",
+    "price_large": "19.00",
+    "image": "",
+    "ingredients": "сливочный соус, моцарелла, креветки, мидии, кальмары, чеснок",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 9,
+  "fields": {
+    "name": "Барбекю",
+    "description": "Пицца с соусом барбекю и копчёностями",
+    "price_small": "11.00",
+    "price_medium": "13.00",
+    "price_large": "15.00",
+    "image": "",
+    "ingredients": "соус барбекю, моцарелла, курица, бекон, красный лук, перец",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 10,
+  "fields": {
+    "name": "Карбонара",
+    "description": "Пицца в стиле одноимённой пасты",
+    "price_small": "10.00",
+    "price_medium": "12.00",
+    "price_large": "14.00",
+    "image": "",
+    "ingredients": "сливочный соус, моцарелла, бекон, пармезан, яйцо, чеснок",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.pizza",
+  "pk": 11,
+  "fields": {
+    "name": "Диабло",
+    "description": "Острая пицца для любителей поострее",
+    "price_small": "10.00",
+    "price_medium": "12.00",
+    "price_large": "14.00",
+    "image": "",
+    "ingredients": "томатный соус, моцарелла, пепперони, халапеньо, острый перец, чеснок",
+    "is_available": true
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 2,
+  "fields": {
+    "code": "FREE",
+    "discount_percent": 0,
+    "valid_from": "2026-05-23T21:00:00Z",
+    "valid_to": "2026-05-24T21:00:00Z",
+    "is_active": true,
+    "usage_limit": 10000,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 3,
+  "fields": {
+    "code": "WELCOME10",
+    "discount_percent": 10,
+    "valid_from": "2026-05-27T22:20:11.744Z",
+    "valid_to": "2026-06-26T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 4,
+  "fields": {
+    "code": "PIZZA20",
+    "discount_percent": 20,
+    "valid_from": "2026-05-27T22:20:11.744Z",
+    "valid_to": "2026-06-11T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 5,
+  "fields": {
+    "code": "LOVE15",
+    "discount_percent": 15,
+    "valid_from": "2026-05-27T22:20:11.744Z",
+    "valid_to": "2026-06-06T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 6,
+  "fields": {
+    "code": "NEWYEAR25",
+    "discount_percent": 25,
+    "valid_from": "2026-05-27T22:20:11.744Z",
+    "valid_to": "2026-05-17T22:20:11.744Z",
+    "is_active": false,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 7,
+  "fields": {
+    "code": "SUMMER5",
+    "discount_percent": 5,
+    "valid_from": "2026-05-07T22:20:11.744Z",
+    "valid_to": "2026-05-22T22:20:11.744Z",
+    "is_active": false,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 8,
+  "fields": {
+    "code": "AUTUMN10",
+    "discount_percent": 10,
+    "valid_from": "2026-05-12T22:20:11.744Z",
+    "valid_to": "2026-06-01T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 9,
+  "fields": {
+    "code": "WINTER30",
+    "discount_percent": 30,
+    "valid_from": "2026-05-02T22:20:11.744Z",
+    "valid_to": "2026-05-17T22:20:11.744Z",
+    "is_active": false,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 10,
+  "fields": {
+    "code": "SPRING15",
+    "discount_percent": 15,
+    "valid_from": "2026-05-22T22:20:11.744Z",
+    "valid_to": "2026-06-11T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 11,
+  "fields": {
+    "code": "FAST10",
+    "discount_percent": 10,
+    "valid_from": "2026-05-27T22:20:11.744Z",
+    "valid_to": "2026-06-03T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.promocode",
+  "pk": 12,
+  "fields": {
+    "code": "BIGPIZZA50",
+    "discount_percent": 50,
+    "valid_from": "2026-05-27T22:20:11.744Z",
+    "valid_to": "2026-05-28T22:20:11.744Z",
+    "is_active": true,
+    "usage_limit": 1,
+    "used_count": 0
+  }
+},
+{
+  "model": "pizzeria.order",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "created_at": "2026-05-20T22:13:56.850Z",
+    "delivery_date": "2026-05-21",
+    "status": "new",
+    "promo_code": null
+  }
+},
+{
+  "model": "pizzeria.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 2,
+    "pizza": 1,
+    "size": "medium",
+    "quantity": 2
+  }
+},
+{
+  "model": "pizzeria.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "pizza": 1,
+    "size": "large",
+    "quantity": 1
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Лучшая пицца",
+    "created_at": "2026-05-20T22:56:07.256Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "pizza": 1,
+    "rating": 4,
+    "text": "Хорошая пицца",
+    "created_at": "2026-05-21T11:08:01.339Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Отличная пицца!",
+    "created_at": "2026-05-27T22:18:06.217Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 4,
+    "text": "Вкусно, но долго везли",
+    "created_at": "2026-05-27T22:18:06.221Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Лучшая пицца в городе",
+    "created_at": "2026-05-27T22:18:06.223Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 2,
+    "text": "Не понравилось",
+    "created_at": "2026-05-27T22:18:06.225Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 3,
+    "text": "Слишком дорого",
+    "created_at": "2026-05-27T22:18:06.227Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Приятное место, классный персонал",
+    "created_at": "2026-05-27T22:18:06.229Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 9,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Быстрая доставка, горячая пицца",
+    "created_at": "2026-05-27T22:18:06.231Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 3,
+    "text": "Соус был слишком кислым",
+    "created_at": "2026-05-27T22:18:06.233Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 11,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Заказываю не первый раз, всё отлично",
+    "created_at": "2026-05-27T22:18:06.235Z"
+  }
+},
+{
+  "model": "pizzeria.review",
+  "pk": 12,
+  "fields": {
+    "user": 1,
+    "pizza": 1,
+    "rating": 5,
+    "text": "Мясная просто бомба",
+    "created_at": "2026-05-27T22:18:06.238Z"
+  }
+},
+{
+  "model": "pizzeria.news",
+  "pk": 1,
+  "fields": {
+    "title": "Открытие",
+    "short_description": "Грандизоное открытие пиццерии",
+    "content": "Грандизоное открытие пиццерии, праздник весь день! Промокд FREE для заказа бесплатной пиццы первым 10000 пользователям",
+    "image": "",
+    "created_at": "2026-05-20T22:53:16.693Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 1,
+  "fields": {
+    "term": "Пицца Мейкер",
+    "definition": "Человек, который делает пиццы",
+    "added_at": "2026-05-20T22:58:33.743Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 2,
+  "fields": {
+    "term": "Моцарелла",
+    "definition": "Итальянский сыр, который используется в пицце",
+    "added_at": "2026-05-27T22:16:53.946Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 3,
+  "fields": {
+    "term": "Пепперони",
+    "definition": "Острая итальянская колбаса",
+    "added_at": "2026-05-27T22:16:53.951Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 4,
+  "fields": {
+    "term": "Базилик",
+    "definition": "Ароматная зелень, часто используемая в итальянской кухне",
+    "added_at": "2026-05-27T22:16:53.954Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 5,
+  "fields": {
+    "term": "Пармезан",
+    "definition": "Твёрдый итальянский сыр",
+    "added_at": "2026-05-27T22:16:53.956Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 6,
+  "fields": {
+    "term": "Рикотта",
+    "definition": "Мягкий итальянский сыр",
+    "added_at": "2026-05-27T22:16:53.958Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 7,
+  "fields": {
+    "term": "Фокачча",
+    "definition": "Итальянский плоский хлеб",
+    "added_at": "2026-05-27T22:16:53.960Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 8,
+  "fields": {
+    "term": "Каламари",
+    "definition": "Кальмары по-итальянски",
+    "added_at": "2026-05-27T22:16:53.962Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 9,
+  "fields": {
+    "term": "Панчетта",
+    "definition": "Итальянский бекон",
+    "added_at": "2026-05-27T22:16:53.964Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 10,
+  "fields": {
+    "term": "Орегано",
+    "definition": "Пряная трава, используется как приправа",
+    "added_at": "2026-05-27T22:16:53.966Z"
+  }
+},
+{
+  "model": "pizzeria.glossary",
+  "pk": 11,
+  "fields": {
+    "term": "Томаты печеные",
+    "definition": "Вяленые помидоры в масле",
+    "added_at": "2026-05-27T22:16:53.969Z"
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 1,
+  "fields": {
+    "name": "Сергей",
+    "position": "Сергеевич",
+    "phone": "+3750000000",
+    "email": "email@gmail.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 2,
+  "fields": {
+    "name": "Иван Иванов",
+    "position": "Повар",
+    "phone": "+375 (29) 111-22-33",
+    "email": "ivan@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 3,
+  "fields": {
+    "name": "Мария Петрова",
+    "position": "Курьер",
+    "phone": "+375 (29) 222-33-44",
+    "email": "maria@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 4,
+  "fields": {
+    "name": "Алексей Сидоров",
+    "position": "Менеджер",
+    "phone": "+375 (29) 333-44-55",
+    "email": "alex@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 5,
+  "fields": {
+    "name": "Ольга Смирнова",
+    "position": "Администратор",
+    "phone": "+375 (29) 444-55-66",
+    "email": "olga@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 6,
+  "fields": {
+    "name": "Дмитрий Козлов",
+    "position": "Повар",
+    "phone": "+375 (29) 555-66-77",
+    "email": "dima@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 7,
+  "fields": {
+    "name": "Екатерина Морозова",
+    "position": "Курьер",
+    "phone": "+375 (29) 666-77-88",
+    "email": "katya@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 8,
+  "fields": {
+    "name": "Сергей Новиков",
+    "position": "Повар",
+    "phone": "+375 (29) 777-88-99",
+    "email": "sergey@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 9,
+  "fields": {
+    "name": "Анна Васильева",
+    "position": "Курьер",
+    "phone": "+375 (29) 888-99-00",
+    "email": "anna@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 10,
+  "fields": {
+    "name": "Павел Зайцев",
+    "position": "Менеджер",
+    "phone": "+375 (29) 999-00-11",
+    "email": "pavel@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.contact",
+  "pk": 11,
+  "fields": {
+    "name": "Наталья Соколова",
+    "position": "Администратор",
+    "phone": "+375 (29) 000-11-22",
+    "email": "natalia@pizzeria.com",
+    "photo": ""
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 1,
+  "fields": {
+    "title": "Пицца Мейкер",
+    "description": "Делать пиццу",
+    "salary": "1000"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 2,
+  "fields": {
+    "title": "Младший Пицца Мейкер",
+    "description": "Помогать делать пиццы",
+    "salary": "700"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 3,
+  "fields": {
+    "title": "Повар пиццы",
+    "description": "Приготовление пиццы по стандартам ресторана",
+    "salary": "1000-1500 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 4,
+  "fields": {
+    "title": "Курьер",
+    "description": "Доставка заказов по городу на авто",
+    "salary": "700-1200 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 5,
+  "fields": {
+    "title": "Менеджер зала",
+    "description": "Управление персоналом, решение конфликтных ситуаций",
+    "salary": "1200-1800 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 6,
+  "fields": {
+    "title": "Администратор",
+    "description": "Встреча гостей, работа с заказами",
+    "salary": "900-1300 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 7,
+  "fields": {
+    "title": "Клинер",
+    "description": "Уборка зала и кухни",
+    "salary": "500-800 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 8,
+  "fields": {
+    "title": "Су-шеф",
+    "description": "Помощь шеф-повару в управлении кухней",
+    "salary": "1300-1700 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 9,
+  "fields": {
+    "title": "Бариста",
+    "description": "Приготовление кофе и напитков",
+    "salary": "800-1100 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 10,
+  "fields": {
+    "title": "Хостес",
+    "description": "Встреча гостей, бронирование столов",
+    "salary": "800-1000 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 11,
+  "fields": {
+    "title": "Кальянщик",
+    "description": "Приготовление кальянов",
+    "salary": "1000-1400 BYN"
+  }
+},
+{
+  "model": "pizzeria.vacancy",
+  "pk": 12,
+  "fields": {
+    "title": "Сомелье",
+    "description": "Консультация по винам и напиткам",
+    "salary": "1200-1600 BYN"
+  }
+}
+]

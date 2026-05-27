@@ -111,12 +111,14 @@ def pizza_list(request):
         'current_time': current_time(request)
     })
 
+from .forms import RegisterForm
+
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # автоматический вход после регистрации
+            login(request, user)
             return redirect('home')
     else:
         form = RegisterForm()

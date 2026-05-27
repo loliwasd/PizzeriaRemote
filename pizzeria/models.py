@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
+from datetime import date
 
 class Pizza(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
@@ -181,3 +182,25 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name = "Вакансия"
         verbose_name_plural = "Вакансии"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    birth_date = models.DateField(verbose_name="Дата рождения")
+    phone = models.CharField(max_length=20, verbose_name="Телефон", blank=True)
+    
+    @property
+    def age(self):
+        today = date.today()
+        return today.year - self.birth_date.year - ((today.month, today.day) < (self.birth_date.month, self.birth_date.day))
+    
+    def clean(self):
+        if self.age < 18:
+            raise ValidationError("Возраст должен быть не менее 18 лет")
+    
+    def __str__(self):
+        return f"{self.user.username} ({self.age} лет)"
+    
+    class Meta:
+        verbose_name = "Профиль"
+        verbose_name_plural = "Профили"
