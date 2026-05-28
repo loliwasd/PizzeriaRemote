@@ -29,14 +29,12 @@
 <h3>Данные доставки</h3>
 <form method="post">
     {% csrf_token %}
-    <div style="margin-bottom: 15px;">
-        <label>Дата доставки:</label><br>
-        <input type="date" name="delivery_date" required>
-    </div>
-    <div style="margin-bottom: 15px;">
-        <label>Промокод:</label><br>
-        <input type="text" name="promo_code" placeholder="Есть промокод?">
-    </div>
-    <button type="submit" style="background: #d32f2f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Подтвердить заказ</button>
+    <label>Дата доставки:</label>
+    <input type="date" name="delivery_date" required>
+    
+    <label>Промокод:</label>
+    <input type="text" name="promo_code" placeholder="Есть промокод?">
+    
+    <button type="submit">Оформить заказ</button>
 </form>
 {% endblock %}
