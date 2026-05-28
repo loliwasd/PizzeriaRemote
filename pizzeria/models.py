@@ -10,7 +10,7 @@ class Pizza(models.Model):
     price_small = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Цена малая")
     price_medium = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Цена средняя")
     price_large = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Цена большая")
-    image = models.ImageField(upload_to='pizzas/', blank=True, null=True, verbose_name="Фото")
+    image = models.CharField(max_length=200, blank=True, null=True, verbose_name="Фото")
     ingredients = models.TextField(verbose_name="Ингредиенты")
     is_available = models.BooleanField(default=True, verbose_name="Доступна")
 
