@@ -224,6 +224,7 @@ def checkout(request):
         delivery_date = request.POST.get('delivery_date')
         promo_code = request.POST.get('promo_code')
         
+        # Создаём заказ
         order = Order.objects.create(
             user=request.user,
             delivery_date=delivery_date,
@@ -233,7 +234,14 @@ def checkout(request):
         total = 0
         for key, item in cart.items():
             pizza = Pizza.objects.get(id=item['pizza_id'])
-            price = item['price']
+            # Цена берётся из модели Pizza в зависимости от размера
+            if item['size'] == 'small':
+                price = pizza.price_small
+            elif item['size'] == 'medium':
+                price = pizza.price_medium
+            else:
+                price = pizza.price_large
+            
             quantity = item['quantity']
             
             OrderItem.objects.create(
@@ -241,15 +249,19 @@ def checkout(request):
                 pizza=pizza,
                 size=item['size'],
                 quantity=quantity,
-                price=price
+                # price не передаём — он вычисляется в модели
             )
-            total += price * quantity
+            total += float(price) * quantity
         
         # Применяем промокод
         discount = 0
         if promo_code:
             try:
-                code = PromoCode.objects.get(code=promo_code, is_active=True)
+                code = PromoCode.objects.get(
+                    code=promo_code,
+                    is_active=True,
+                    valid_to__gte=timezone.now()
+                )
                 discount = total * code.discount_percent / 100
                 order.promo_code = code
                 code.used_count += 1
@@ -257,27 +269,35 @@ def checkout(request):
             except PromoCode.DoesNotExist:
                 pass
         
-        order.total_price = total - discount
-        order.save()
+        # ❌ НЕЛЬЗЯ присваивать property:
+        # order.total_price = total - discount
+        # order.discount_amount = discount
+        
+        # ✅ Сохраняем только если есть другие поля (например, статус)
+        # order.save()
         
         # Очищаем корзину
         request.session['cart'] = {}
         
         return redirect('order_success', order_id=order.id)
     
-    # GET-запрос — показываем форму
+    # GET-запрос: показываем форму оформления
     cart_items = []
     total = 0
     for key, item in cart.items():
         pizza = Pizza.objects.get(id=item['pizza_id'])
-        price = item['price']
-        quantity = item['quantity']
-        subtotal = price * quantity
+        if item['size'] == 'small':
+            price = pizza.price_small
+        elif item['size'] == 'medium':
+            price = pizza.price_medium
+        else:
+            price = pizza.price_large
+        subtotal = float(price) * item['quantity']
         total += subtotal
         cart_items.append({
             'pizza': pizza,
             'size': item['size'],
-            'quantity': quantity,
+            'quantity': item['quantity'],
             'price': price,
             'subtotal': subtotal,
         })
