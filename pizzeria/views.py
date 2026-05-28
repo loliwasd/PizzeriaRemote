@@ -1,10 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout
 from django.utils import timezone
-from .models import News, Contact, Glossary, Vacancy, PromoCode, Review, Pizza
-from django.db.models import Q
-from django.contrib.auth import login
-from .forms import RegisterForm
+from .models import Pizza, Order, OrderItem, News, Contact, Glossary, Vacancy, Review, PromoCode
+from .forms import RegisterForm, ReviewForm
 import requests
+import json
+from datetime import datetime
+import pytz
+import calendar
 
 def current_time(request):
     return timezone.localtime(timezone.now()).strftime("%H:%M:%S")
@@ -139,19 +143,19 @@ from .models import Pizza, Order, OrderItem, PromoCode
 from django.utils import timezone
 
 def cart_view(request):
-    """Просмотр корзины"""
     cart = request.session.get('cart', {})
     cart_items = []
     total = 0
-    
-    for pizza_id, item in cart.items():
+
+    for key, item in cart.items():
         try:
-            pizza = Pizza.objects.get(id=int(pizza_id))
+            pizza = Pizza.objects.get(id=int(item['pizza_id']))
             price = item.get('price', 0)
             quantity = item.get('quantity', 1)
             subtotal = price * quantity
             total += subtotal
             cart_items.append({
+                'key': key,
                 'pizza': pizza,
                 'size': item.get('size', 'medium'),
                 'quantity': quantity,
@@ -160,13 +164,12 @@ def cart_view(request):
             })
         except Pizza.DoesNotExist:
             continue
-    
+
     return render(request, 'pizzeria/cart.html', {
         'cart_items': cart_items,
         'total': total,
         'current_time': current_time(request)
     })
-
 def add_to_cart(request, pizza_id):
     """Добавление пиццы в корзину"""
     if request.method == 'POST':
