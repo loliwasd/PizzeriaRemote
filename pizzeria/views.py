@@ -269,14 +269,6 @@ def checkout(request):
             except PromoCode.DoesNotExist:
                 pass
         
-        # ❌ НЕЛЬЗЯ присваивать property:
-        # order.total_price = total - discount
-        # order.discount_amount = discount
-        
-        # ✅ Сохраняем только если есть другие поля (например, статус)
-        # order.save()
-        
-        # Очищаем корзину
         request.session['cart'] = {}
         
         return redirect('order_success', order_id=order.id)

@@ -7,7 +7,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py migrate
-      # python manage.py loaddata pizzeria/fixtures/initial_data.json #
+      python manage.py loaddata pizzeria/fixtures/initial_data.json
       python manage.py collectstatic --noinput
       echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin123') if not User.objects.filter(username='admin').exists() else None" | python manage.py shell
     startCommand: gunicorn pizzeria_project.wsgi:application --bind 0.0.0.0:8000
