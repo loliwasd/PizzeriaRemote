@@ -1,0 +1,15 @@
+{% extends 'pizzeria/base.html' %}
+
+{% block title %}Удалить отзыв{% endblock %}
+
+{% block content %}
+<h2>Удалить отзыв</h2>
+
+<p>Вы уверены, что хотите удалить отзыв о пицце "{{ review.pizza.name }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+    <a href="{% url 'reviews' %}">Нет, вернуться</a>
+</form>
+{% endblock %}

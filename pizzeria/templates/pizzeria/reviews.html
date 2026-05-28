@@ -21,6 +21,13 @@
     </p>
 {% endif %}
 
+{% if user == review.user or user.is_staff %}
+    <div style="margin-top: 10px;">
+        <a href="{% url 'review_edit' review.id %}">✏️ Редактировать</a>
+        <a href="{% url 'review_delete' review.id %}" style="color: red; margin-left: 10px;">🗑️ Удалить</a>
+    </div>
+{% endif %}
+
 <!-- Список отзывов -->
 {% if reviews %}
     {% for review in reviews %}

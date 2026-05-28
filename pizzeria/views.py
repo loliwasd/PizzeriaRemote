@@ -81,6 +81,45 @@ def reviews(request):
         'current_time': current_time(request)
     })
 
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def review_edit(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    
+    # Только автор или админ может редактировать
+    if review.user != request.user and not request.user.is_staff:
+        return redirect('reviews')
+    
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('reviews')
+    else:
+        form = ReviewForm(instance=review)
+    
+    return render(request, 'pizzeria/review_form.html', {
+        'form': form,
+        'review': review,
+        'title': 'Редактировать отзыв'
+    })
+
+@login_required
+def review_delete(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    
+    # Только автор или админ может удалять
+    if review.user != request.user and not request.user.is_staff:
+        return redirect('reviews')
+    
+    if request.method == 'POST':
+        review.delete()
+        return redirect('reviews')
+    
+    return render(request, 'pizzeria/review_confirm_delete.html', {'review': review})
+
 def promocodes(request):
     active_codes = PromoCode.objects.filter(is_active=True, valid_to__gte=timezone.now())
     expired_codes = PromoCode.objects.filter(is_active=False) | PromoCode.objects.filter(valid_to__lt=timezone.now())
