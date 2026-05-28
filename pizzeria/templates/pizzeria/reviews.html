@@ -21,13 +21,6 @@
     </p>
 {% endif %}
 
-{% if user == review.user or user.is_staff %}
-    <div style="margin-top: 10px;">
-        <a href="{% url 'review_edit' review.id %}">✏️ Редактировать</a>
-        <a href="{% url 'review_delete' review.id %}" style="color: red; margin-left: 10px;">🗑️ Удалить</a>
-    </div>
-{% endif %}
-
 <!-- Список отзывов -->
 {% if reviews %}
     {% for review in reviews %}
@@ -35,6 +28,14 @@
             <p><strong>{{ review.user.username }}</strong> оценил(а) <strong>{{ review.pizza.name }}</strong> на {{ review.rating }}★</p>
             <p>{{ review.text }}</p>
             <small>{{ review.created_at|date:"d.m.Y H:i" }}</small>
+            
+            <!-- Кнопки редактирования и удаления (только для автора или админа) -->
+            {% if user == review.user or user.is_staff %}
+                <div style="margin-top: 10px;">
+                    <a href="{% url 'review_edit' review.id %}">✏️ Редактировать</a>
+                    <a href="{% url 'review_delete' review.id %}" style="color: red; margin-left: 10px;">🗑️ Удалить</a>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
 {% else %}
