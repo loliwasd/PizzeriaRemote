@@ -213,7 +213,6 @@ def remove_from_cart(request, key):
     return redirect('cart')
 
 def checkout(request):
-    """Оформление заказа"""
     if not request.user.is_authenticated:
         return redirect('login')
     
@@ -225,7 +224,6 @@ def checkout(request):
         delivery_date = request.POST.get('delivery_date')
         promo_code = request.POST.get('promo_code')
         
-        # Создаём заказ
         order = Order.objects.create(
             user=request.user,
             delivery_date=delivery_date,
@@ -251,11 +249,7 @@ def checkout(request):
         discount = 0
         if promo_code:
             try:
-                code = PromoCode.objects.get(
-                    code=promo_code,
-                    is_active=True,
-                    valid_to__gte=timezone.now()
-                )
+                code = PromoCode.objects.get(code=promo_code, is_active=True)
                 discount = total * code.discount_percent / 100
                 order.promo_code = code
                 code.used_count += 1
@@ -271,9 +265,26 @@ def checkout(request):
         
         return redirect('order_success', order_id=order.id)
     
+    # GET-запрос — показываем форму
+    cart_items = []
+    total = 0
+    for key, item in cart.items():
+        pizza = Pizza.objects.get(id=item['pizza_id'])
+        price = item['price']
+        quantity = item['quantity']
+        subtotal = price * quantity
+        total += subtotal
+        cart_items.append({
+            'pizza': pizza,
+            'size': item['size'],
+            'quantity': quantity,
+            'price': price,
+            'subtotal': subtotal,
+        })
+    
     return render(request, 'pizzeria/checkout.html', {
-        'cart_items': cart_view(request).context_data['cart_items'],
-        'total': cart_view(request).context_data['total'],
+        'cart_items': cart_items,
+        'total': total,
         'current_time': current_time(request)
     })
 
