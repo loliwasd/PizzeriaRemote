@@ -1,4 +1,5 @@
 {% extends 'pizzeria/base.html' %}
+
 {% load static %}
 
 {% block title %}Контакты{% endblock %}
@@ -8,17 +9,17 @@
 
 {% if contacts %}
     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-        {% for contact in contacts %}
+        {% for person in contacts %}
             <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; width: 250px; text-align: center;">
-                {% if contact.photo %}
-                    <img src="{{ contact.photo.url }}" alt="{{ contact.name }}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+                {% if person.photo %}
+                   <img src="{% static 'images/contacts/'|add:contact.image_name %}" alt="{{ contact.name }}" style="width: 100px; height: 100px; border-radius: 50%;">
                 {% else %}
                     <div style="width: 100px; height: 100px; background: #ccc; border-radius: 50%; margin: 0 auto;"></div>
                 {% endif %}
-                <h3>{{ contact.name }}</h3>
-                <p><strong>{{ contact.position }}</strong></p>
-                <p>📞 {{ contact.phone }}</p>
-                <p>✉️ {{ contact.email }}</p>
+                <h3>{{ person.name }}</h3>
+                <p><strong>{{ person.position }}</strong></p>
+                <p>📞 {{ person.phone }}</p>
+                <p>✉️ {{ person.email }}</p>
             </div>
         {% endfor %}
     </div>
