@@ -209,6 +209,7 @@ def cart_view(request):
         'total': total,
         'current_time': current_time(request)
     })
+
 def add_to_cart(request, pizza_id):
     """Добавление пиццы в корзину"""
     if request.method == 'POST':
