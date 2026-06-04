@@ -163,6 +163,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=20, verbose_name="Телефон")
     email = models.EmailField(verbose_name="Email")
     photo = models.ImageField(upload_to='contacts/', blank=True, null=True, verbose_name="Фото")
+    image_name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Имя файла картинки")
 
     def __str__(self):
         return f"{self.name} - {self.position}"
