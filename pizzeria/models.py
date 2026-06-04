@@ -135,6 +135,7 @@ class News(models.Model):
     content = models.TextField(verbose_name="Полное содержание")
     image = models.ImageField(upload_to='news/', blank=True, null=True, verbose_name="Картинка")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации")
+    image_name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Имя файла картинки")
 
     def __str__(self):
         return self.title

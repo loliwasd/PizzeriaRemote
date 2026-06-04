@@ -1,5 +1,4 @@
 {% extends 'pizzeria/base.html' %}
-
 {% load static %}
 
 {% block title %}Новости{% endblock %}
@@ -11,8 +10,10 @@
         <div style="border-bottom: 1px solid #eee; margin-bottom: 20px; padding-bottom: 10px;">
             <h3>{{ item.title }}</h3>
             <p>{{ item.short_description }}</p>
-            {% if item.image %}
-               <img src="{% static 'images/news/'|add:news.image_name %}" alt="{{ news.title }}" style="max-width: 200px;">
+            {% if item.image_name %}
+                <img src="{% static 'images/news/'|add:item.image_name %}" alt="{{ item.title }}" style="max-width: 200px;">
+            {% else %}
+                <div style="width: 200px; height: 150px; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">📰</div>
             {% endif %}
             <br>
             <small>{{ item.created_at|date:"d.m.Y" }}</small>
