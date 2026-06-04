@@ -5,11 +5,16 @@
 {% block content %}
 <h2>Удалить отзыв</h2>
 
-<p>Вы уверены, что хотите удалить отзыв о пицце "{{ review.pizza.name }}"?</p>
+<p>Вы уверены, что хотите удалить этот отзыв?</p>
+<div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+    <p><strong>{{ review.user.username }}</strong> оценил(а) <strong>{{ review.pizza.name }}</strong> на {{ review.rating }}★</p>
+    <p>{{ review.text }}</p>
+    <small>{{ review.created_at|date:"d.m.Y H:i" }}</small>
+</div>
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Да, удалить</button>
-    <a href="{% url 'reviews' %}">Нет, вернуться</a>
+    <button type="submit" style="background: #d32f2f; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer;">✅ Да, удалить</button>
+    <a href="{% url 'reviews' %}" style="background: #ccc; color: black; padding: 8px 15px; text-decoration: none; border-radius: 5px;">❌ Отмена</a>
 </form>
 {% endblock %}
